@@ -18,5 +18,11 @@
         <property name="use_sql_comments">true</property>
        <mapping class="models.AutoBrand" />
        <mapping class="models.AutoModel" />
+
+       <mapping class="manytomany.Person" />
+       <mapping class="manytomany.Address" />
+
+        <mapping class="authorsbooks.Book" />
+       <mapping class="authorsbooks.Author" />
     </session-factory>
 </hibernate-configuration>
