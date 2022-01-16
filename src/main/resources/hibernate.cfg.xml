@@ -24,5 +24,11 @@
 
         <mapping class="authorsbooks.Book" />
        <mapping class="authorsbooks.Author" />
+
+        <mapping class="lazy.Category"/>
+        <mapping class="lazy.Task"/>
+
+        <mapping class="lazy.cars.Model"/>
+        <mapping class="lazy.cars.Mark"/>
     </session-factory>
 </hibernate-configuration>
