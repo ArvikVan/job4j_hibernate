@@ -1,9 +1,9 @@
 package authorsbooks;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author ArvikV
@@ -17,13 +17,18 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Author> authors = new HashSet<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    private List<Author> authors = new ArrayList<>();
 
     public static Book of(String name) {
         Book book = new Book();
         book.name = name;
         return book;
+    }
+
+    public void addAuthor(Author author) {
+        authors.add(author);
     }
 
     public int getId() {
@@ -42,11 +47,11 @@ public class Book {
         this.name = name;
     }
 
-    public Set<Author> getAuthors() {
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Set<Author> authors) {
+    public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
 

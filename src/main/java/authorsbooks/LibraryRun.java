@@ -19,21 +19,16 @@ public class LibraryRun {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Session session = sf.openSession();
             session.beginTransaction();
-/**
-            Author author1 = Author.of("A-Strugacki");
-            Author author2 = Author.of("B-Strugacki");
-            Author author3 = Author.of("Bulgakov");
 
-            Book book1 = Book.of("PiknikNaObochine");
-            book1.getAuthors().add(author1);
-            book1.getAuthors().add(author2);
+          /*  Book book1 = Book.of("PiknikNaObochine");
+            book1.addAuthor(new Author("A-Strugacki"));
+            book1.addAuthor(new Author("B-Strugacki"));
 
             Book book2 = Book.of("MasterAndMargarita");
-            book2.getAuthors().add(author3);
+            book2.addAuthor(new Author("Bulgakov"));
 
             session.save(book1);
-            session.save(book2);
- */
+            session.save(book2);*/
             Book book = session.get(Book.class, 1);
             session.remove(book);
 
