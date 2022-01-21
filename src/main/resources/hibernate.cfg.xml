@@ -36,5 +36,7 @@
 
         <mapping class="hql.Student"/>
         <mapping class="hql.Candidate"/>
+        <mapping class="hql.DataVacancies"/>
+        <mapping class="hql.Vacancy"/>
     </session-factory>
 </hibernate-configuration>
