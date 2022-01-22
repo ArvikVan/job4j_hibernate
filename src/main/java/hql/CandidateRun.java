@@ -7,6 +7,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 /**
  * @author ArvikV
  * @version 1.0
@@ -42,13 +44,12 @@ public class CandidateRun {
             кандидата по id
             Query query = session.createQuery("from Candidate c where c.id = 2");
             System.out.println(query.uniqueResult());
-            */
-            /*
             кандидата по имени
-            Query query = session.createQuery("from Candidate c where c.name =: newName")
-                    .setParameter("newName", "VALERA");
-            System.out.println(query.uniqueResult());
-            */
+                    */
+            List<Candidate> query = session.createQuery(
+                    "from Candidate c where c.name =: newName", Candidate.class)
+                    .setParameter("newName", "Arvik").getResultList();
+            System.out.println(query);
             /*
             обновления записи кандидата
             session.createQuery("update Candidate c set c.name =: newName where c.id =: fId")
@@ -77,14 +78,14 @@ public class CandidateRun {
             candidate.setDataVacancies(dataVacancies);
             session.save(candidate);*/
 
-            result = (Candidate) session.createQuery(
+            /*result = (Candidate) session.createQuery(
                     "select distinct c from Candidate c "
                             + " join fetch c.dataVacancies d"
                             + " join fetch d.vacancyList v where c.id =: fId")
                     .setParameter("fId", 5)
                     .uniqueResult();
             System.out.println(result);
-
+            */
             session.getTransaction().commit();
             session.close();
         } catch (Exception e) {
